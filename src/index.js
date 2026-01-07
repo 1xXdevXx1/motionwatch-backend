@@ -7,7 +7,15 @@ dotenv.config({
   path: './env'
 })
 
-connectDB();
+connectDB()
+.then(()=>{
+  app.listen(process.env.PORT || 8000 ,()=>{
+      console.log(`Server is running at port : ${process.env.PORT || 8000}`);
+  })
+})
+.catch((err)=>{
+  console.log("Mongo db connection failed!!!!",err)
+})
 /* yeh basi method h lekin yeh use nhi karenge ab connection ko db folder se import karenge vo zyada clean way hai
 import express from "express"
 const app = express();
